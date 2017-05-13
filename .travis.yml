@@ -1,0 +1,14 @@
+language: go
+
+go:
+  - 1.x
+  - master
+install:
+  - go get github.com/onsi/gomega
+  - go get github.com/onsi/ginkgo
+  - go get golang.org/x/tools/cmd/cover
+  - go get -d
+script:
+  - go test -coverprofile=cover.out -v --race .
+after_success:
+- bash <(curl -s https://codecov.io/bash)
